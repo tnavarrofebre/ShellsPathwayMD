@@ -15,7 +15,7 @@
 │  
 └── [tests](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/tests)/          # Test files directory (optional)      
 │    ├── [NaCl_tests_box](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/tests/NaCl_tests_box)/           # Test files for verification   
-│    │   ├── [NaCl_tests_box.ndx](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/NaCl_tests_box/NaCl_tests_box.ndx)            # Index file for molecule selection in simulations       
-│    │   ├── [NaCl_tests_box.gro](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/NaCl_tests_box/NaCl_tests_box.gro)          # GROMACS configuration file for molecular dynamics     
+│    │   ├── [NaCl_tests_box.ndx](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/NaCl_tests_box/NaCl_test_box.ndx)            # Index file for molecule selection in simulations       
+│    │   ├── [NaCl_tests_box.gro](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/NaCl_tests_box/NaCl_test_box.gro)          # GROMACS configuration file for molecular dynamics     
 │    │   ├── [NaCl_tests_box.xtc](http://redi.exactas.unlpam.edu.ar/xmlui/handle/2013/388)          # GROMACS trajectory file for molecular dynamics simulation          
 
