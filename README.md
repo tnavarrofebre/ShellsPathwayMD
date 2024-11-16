@@ -18,5 +18,5 @@
     ├── [tests_files](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/tests/tests_files)/  
     │   ├── [index.ndx](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/tests_files/index.ndx)  
     │   ├── [md.gro](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/tests_files/md.gro)  
-    │   ├── md.xtc (It will be available soon.)   
+    │   ├── [md.xtc](http://redi.exactas.unlpam.edu.ar/xmlui/handle/2013/388)   
 
