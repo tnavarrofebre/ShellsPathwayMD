@@ -15,8 +15,8 @@
 │   │   │   └── [process_files.py](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/src/utils/modules/process_files.py)  
 │  
 └── [tests](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/tests)/  
-    ├── [tests_files](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/tests/tests_files)/  
-    │   ├── [index.ndx](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/tests_files/index.ndx)  
-    │   ├── [md.gro](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/tests_files/md.gro)  
-    │   ├── [md.xtc](http://redi.exactas.unlpam.edu.ar/xmlui/handle/2013/388)   
+│    ├── [tests_files](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/tests/tests_files)/  
+│    │   ├── [index.ndx](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/tests_files/index.ndx)  
+│    │   ├── [md.gro](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/tests_files/md.gro)  
+│    │   ├── [md.xtc](http://redi.exactas.unlpam.edu.ar/xmlui/handle/2013/388)   
 
