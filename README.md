@@ -1,5 +1,6 @@
 [ShellsPathwayMD](https://github.com/tnavarrofebre/ShellsPathwayMD)/       
 ├── [aditionals](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/aditionals)         # Aditionals py scripts  
+│   ├──[gro2stl.py](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/aditionals/gro2stl.py) #  
 │   └──[cn-2.py](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/aditionals/cn-2.py) #   
 ├── [config.ini](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/config.ini)         # Configuration file for input parameters       
 ├── [Makefile](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/Makefile)             # Compilation and execution instructions      
