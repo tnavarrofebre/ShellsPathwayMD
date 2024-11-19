@@ -57,8 +57,15 @@
     source mi-entorno/bin/activate  
     ```
 3. Instala los _requirements_:  
-
-    ```make setup
+    ```
+    make setup
     ```  
-Si decidiste realizar la instalacion dentro de un entorno vistual no olvides inicializarlo cada vez que vayas a utilizar el este codigo.  
+Si decidiste realizar la instalacion dentro de un entorno vistual no olvides inicializarlo :heavy_exclamation_mark: cada vez que vayas a urealizar un análisis.  
     ``source mi-entorno/bin/activate``
+
+## Modo de uso y ejemplo
+
+> [!NOTE]  
+> **TUTORIAL DISPONIBLE**  
+    >Este proyecto se acompaña con la carpeta [NaCl_tests_box](https://github.com/tnavarrofebre/ShellsPathwayMD/tree/main/tests/NaCl_tests_box) que contiene un archivo tipo [GRO](https://manual.gromacs.org/archive/5.0.3/online/gro.html) y otro [NDX](https://manual.gromacs.org/archive/5.0.4/online/ndx.html). El otro archivo necesario para acompañar el ejemplo se encuentra en el [repositorio digital de la FCEyN UNLpam](http://redi.exactas.unlpam.edu.ar/xmlui/handle/2013/388) y es de tipo [XTC](https://manual.gromacs.org/archive/5.0.4/online/xtc.html).   
+
