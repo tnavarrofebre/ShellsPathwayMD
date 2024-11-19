@@ -42,3 +42,23 @@
 │    │   ├── [NaCl_tests_box.ndx](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/NaCl_tests_box/NaCl_test_box.ndx)            # Index file for molecule selection in simulations       
 │    │   ├── [NaCl_tests_box.gro](https://github.com/tnavarrofebre/ShellsPathwayMD/blob/main/tests/NaCl_tests_box/NaCl_test_box.gro)          # GROMACS configuration file for molecular dynamics     
 │    │   ├── [NaCl_tests_box.xtc](http://redi.exactas.unlpam.edu.ar/xmlui/handle/2013/388)          # GROMACS trajectory file for molecular dynamics simulation  
+
+## Instalación
+> [!IMPORTANT]    
+> Antes de comenzar la instalacion debes tener GROMACS 2022 o superior instalado.    
+> [Guia de instalacion de GROMACS](https://manual.gromacs.org/2024.0/install-guide/index.html)  
+1. Clona el repositorio:  
+    ```
+    git clone https://github.com/tnavarrofebre/ShellsPathwayMD  
+    ``` 
+2. Si lo deseas crea un entorno virtual:  
+    ```
+    python3 -m venv mi-entorno  
+    source mi-entorno/bin/activate  
+    ```
+3. Instala los _requirements_:  
+
+    ```make setup
+    ```  
+Si decidiste realizar la instalacion dentro de un entorno vistual no olvides inicializarlo cada vez que vayas a utilizar el este codigo.  
+    ``source mi-entorno/bin/activate``
