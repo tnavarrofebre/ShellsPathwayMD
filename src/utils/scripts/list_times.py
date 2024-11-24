@@ -26,8 +26,21 @@ numero = int(valores_inp[7].split()[2])   # Third value: number of intervals
 # --------------------------------------------------------------------
 # Loop through all files in the 'listas' directory
 listas=os.path.join(ruta_directorio,'listas')
+
+# Crear directorio 'intervalos' si no existe
+intervalos = os.path.join(ruta_directorio, 'intervalos')
+
 for filename in os.listdir(listas):
     if filename.endswith(".xvg"):  # Process only .xvg files
+
+        # Nombre del archivo de salida
+        output_filename = filename.replace(".xvg", "_intervalos.xvg")
+        output_filepath = os.path.join(intervalos, output_filename)
+
+        # Si el archivo de salida ya existe, continuar con el siguiente
+        if os.path.exists(output_filepath):
+            print(f"El archivo {output_filename} ya existe. Saltando.", file=sys.stderr)
+            continue
 
         # Create an array of equally spaced values between 'minimo' and 'maximo'
         # These values represent the time intervals for splitting data

@@ -43,16 +43,32 @@ limit_procs() {
 
 
 # Create necessary directories if they don't exist
-mkdir -p $directory_path/listas
+mkdir -p "$directory_path/listas"
 
 # Step 1: Calculate minimum distances for each target
 echo "Calculating minimum distances..."
 for target in "${targets[@]}"; do
-    gmx mindist -f "$directory_path/$trajectory" -s "$directory_path/$structure" -n "$directory_path/$index_file" -od "$directory_path/listas/dist-$target.xvg" -group <<EOF
+    output_file="$directory_path/listas/dist-$target.xvg"
+  
+    # Check if the output file already exists
+    if [[ -f "$output_file" ]]; then
+        echo "File $output_file already exists. Skipping minimum distance calculation for $target."
+        continue
+    fi
+
+    # Limit concurrent processes
+    limit_procs
+
+    # Run gmx mindist in the background
+    gmx mindist -f "$directory_path/$trajectory" -s "$directory_path/$structure" \
+        -n "$directory_path/$index_file" -od "$output_file" -group <<EOF &
 $pos
 $target
 EOF
 done
+
+# Wait for all background processes to complete
+wait
 
 
 # Step 2: Generate time intervals using list_times.py
@@ -84,14 +100,20 @@ for interval_file in "$interval_dir"/*.xvg; do
                 num2=$(echo "$pair" | sed -E 's/\(([^,]+), ([^)]+)\)/\2/')
                 pos="${group_name}${pair_count}"
                 pos=$(echo "$pos" | sed 's/\t/-/g')
+                output_file_gr="$directory_path/g_rs/${atom}-${pos}.xvg"
 
                 if [[ -n $num1 ]]; then
+                    if [[ -f "$output_file_gr" ]]; then
+                        echo "File $output_file_gr already exists. Skipping RDF calculation."
+                        continue
+                    fi
+
                     # Limit concurrent processes
                     limit_procs
 
                     # Run RDF calculation in the background
                     gmx rdf -f "$directory_path/$trajectory" -s "$directory_path/$structure" -n "$directory_path/$index_file" \
-                        -o $directory_path/g_rs/${atom}-${pos}.xvg -b "$num1" -e "$num2" <<EOF &
+                        -o "$output_file_gr" -b "$num1" -e "$num2" <<EOF &
 $rdf_ref
 "${targets[$tgs]}"
 EOF

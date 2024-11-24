@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 
 def load_values(file_path):
     """
@@ -39,7 +40,7 @@ def check_files(directory_path, required_files):
     for file_name in required_files:
         file_path = os.path.join(directory_path, file_name)
         if not os.path.isfile(file_path):
-            print(f"Error: The file '{file_name}' is missing in the specified path.")
+            print(f"Error: The file '{file_path}' is missing in the specified path.", file=sys.stderr)
             return False
     return True
 
@@ -61,57 +62,81 @@ def check_elements_in_file(file_path, elements_to_check):
             # Create a regex pattern to match the element inside square brackets
             pattern = rf"\[\s*{re.escape(element)}\s*\]"
             if not re.search(pattern, content):
-                print(f"Error: The element '{element}' is missing in the file '{file_path}'.")
+                print(f"Error: The element '{element}' is missing in the file '{file_path}'.", file=sys.stderr)
                 return False
     return True
 
 
-def modify_file(file_path, target_group, values_to_add, write=False):
+def modify_file(file_path, target_group, write=False):
     """
     Modifies a file by adding new groups and values below a target group.
 
     Args:
         file_path (str): Path to the file.
         target_group (str): Name of the target group to find in the file.
-        values_to_add (list): List of values to add.
         write (bool): Whether to write changes to the file. Defaults to False.
 
     Returns:
         list: A list of new group names added to the file.
     """
+
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
     group_found = False
-    updated_content = []
+    updated_content = ['\n']
     new_groups = []
+    numbers_to_add = []
+    lines_to_test = []
+
 
     for line in lines:
         if group_found:
-            # Check if a new group starts
-            if re.match(r"\[\s*\w+\s*\]", line):
+            # Extract numbers under the target group
+            if line.startswith("["):  # End of the group
                 group_found = False
-                # Add new groups below the found group
-                for value in values_to_add:
-                    updated_content.append(f"[ {target_group}-{value} ]\n")
-                    new_groups.append(f"{target_group}-{value}")
-                    updated_content.append(f"   {value}\n")
-
-        # Add the current line
-        updated_content.append(line)
-
-        # Detect the target group
+                continue
+            numbers_to_add.extend(line.split())
+        
+        # Check if the current line matches the target group
         if re.match(rf"\[\s*{re.escape(target_group)}\s*\]", line):
             group_found = True
+    
+        lines_to_test.append(line)
+
+
+    # If numbers are found, create new groups
+    if numbers_to_add:
+        for value in numbers_to_add:
+            group_header = f"[ {target_group}-{value} ]\n"
+    
+            if group_header in lines_to_test:
+                continue  # Si el grupo ya existe, pasamos al siguiente valor
+            updated_content.append(group_header)  # Agregar el encabezado del grupo
+            new_groups.append(f"{target_group}-{value}")  # Guardar el nuevo grupo en la lista
+            updated_content.append(f"   {value}\n")  # Agregar el valor correspondiente
 
     if write:
-        # Write the updated content to the file
-        with open(file_path, 'w') as file:
+        with open(file_path, 'a') as file:
+
             file.writelines(updated_content)
-            file.write(f"\n#Auto-generated content for the group '{target_group}'\n")
 
     return new_groups
 
+def read_groups(file_path, target_group):
+    
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    new_groups = []    
+    for line in lines:  
+         
+        # Modifica la expresión regular
+        if re.match(rf"\[\s*{re.escape(target_group)}-\d+\s*\]", line.strip()): 
+            # Limpia la línea de espacios y saltos de línea
+            line = re.sub(r"^\[\s*|\s*\]\n$", "", line)  
+            new_groups.append(line)
+            
+    return new_groups
 
 def contains_line(file_path, line_to_find):
     """
